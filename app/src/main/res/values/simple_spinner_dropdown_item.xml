@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="planets_array">
+        <item>Default</item>
+        <item>Date Format Day/Month</item>
+        <item>YYYY-MM-DD Format</item>
+        <item>AM / PM Format</item>
+        <item>Separate with Comma</item>
+    </string-array>
+</resources>
