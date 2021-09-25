@@ -1,7 +1,10 @@
 package com.example.dateconversion
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
+import android.text.Spanned
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
@@ -10,20 +13,39 @@ import android.widget.AdapterView
 import android.view.View
 
 import android.widget.AdapterView.OnItemSelectedListener
-
-
+import androidx.annotation.RequiresApi
+import androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY
 
 
 class MainActivity : AppCompatActivity() {
     var date1 = "13-02-2017T07:53:51"
+    var username = "qadirabdul20@yahoo.com"
+    var mailCount = "this format"
+
+    //format string
+    var usernameFormate = "qadirabdul20@yahoo.com"
+    var mailCountFormate = 10
+
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var myText : TextView = findViewById(R.id.text1)
+        var myText: TextView = findViewById(R.id.text1)
 
+
+        var formatTextValue: TextView = findViewById(R.id.welcomeFormatText)
 
         val spinner: Spinner = findViewById(R.id.planets_spinner)
+
+        var mytext = getString(R.string.welcome_messages2, usernameFormate, mailCountFormate)
+
+        //for escape character
+
+        val styledText: Spanned = Html.fromHtml(mytext, FROM_HTML_MODE_LEGACY)
+
+        formatTextValue.text = styledText
+
         ArrayAdapter.createFromResource(
             this,
             R.array.planets_array,
@@ -41,27 +63,36 @@ class MainActivity : AppCompatActivity() {
                     id: Long
                 ) {
                     myText.text = date1
-                   if(position == 1){
-                       var dayMonth = date1
-                       dayMonth = dayMonth.convertDateToDayMonth(DateFormats.DEFAULT_FORMAT_WITHOUT_TIME.format).toString()
-                       myText.text = dayMonth
-                   }
-                    else if(position == 2){
+                    if (position == 1) {
+                        var dayMonth = date1
+                        dayMonth =
+                            dayMonth.convertDateToDayMonth(DateFormats.DEFAULT_FORMAT_WITHOUT_TIME.format)
+                                .toString()
+                        myText.text = dayMonth
+                        formatTextValue.text =
+                            getString(R.string.welcome_messages, myText.text, mailCount)
+                    } else if (position == 2) {
                         var trimhour = date1
-                       trimhour = trimhour.trimHourFromDate(DateFormats.DEPOSIT_FORMAT2.format).toString()
-                       myText.text = trimhour
-                   }
-                   else if(position == 3){
-                       var timeAMPM = date1
-                       timeAMPM = timeAMPM.convertDateToAmPm(DateFormats.DEPOSIT_FORMAT2.format).toString()
-                       myText.text = timeAMPM
-                   }
-
-                   else if(position == 3){
-                       var timeAMPM = date1
-                       timeAMPM = timeAMPM.convertDateToDMYWithCommaSeparator(DateFormats.DEPOSIT_FORMAT2.format, ",").toString()
-                       myText.text = timeAMPM
-                   }
+                        trimhour =
+                            trimhour.trimHourFromDate(DateFormats.DEPOSIT_FORMAT2.format).toString()
+                        myText.text = trimhour
+                        formatTextValue.text =
+                            getString(R.string.welcome_messages, myText.text, mailCount)
+                    } else if (position == 3) {
+                        var timeAMPM = date1
+                        timeAMPM = timeAMPM.convertDateToAmPm(DateFormats.DEPOSIT_FORMAT2.format)
+                            .toString()
+                        myText.text = timeAMPM
+                    } else if (position == 3) {
+                        var timeAMPM = date1
+                        timeAMPM = timeAMPM.convertDateToDMYWithCommaSeparator(
+                            DateFormats.DEPOSIT_FORMAT2.format,
+                            ","
+                        ).toString()
+                        myText.text = timeAMPM
+                        formatTextValue.text =
+                            getString(R.string.welcome_messages, myText, mailCount)
+                    }
 
                 }
 
