@@ -1,4 +1,6 @@
 package com.example.dateconversion
+import android.text.format.DateUtils
+import android.util.Log
 import android.util.Patterns
 import java.text.SimpleDateFormat
 import java.util.*
@@ -145,4 +147,28 @@ fun Date.formatToViewTime(customFormat: String = "dd MMMM yyyy"): String {
     val sdf = SimpleDateFormat(customFormat, Locale.getDefault())
     Calendar.getInstance().time
     return sdf.format(this)
+}
+
+//for yesterday today
+fun String?.getYesterdayToday(date: String, format : String): String {
+    try {
+        val formatter = SimpleDateFormat(format)
+        val date = formatter.parse(date)
+        val timeInMilliseconds = date.time
+
+        return when {
+            DateUtils.isToday(timeInMilliseconds) -> {
+                "today"
+            }
+            DateUtils.isToday(timeInMilliseconds+ DateUtils.DAY_IN_MILLIS) -> {
+                "yesterday"
+            }
+            else -> {
+                ""
+            }
+        }
+    } catch (ex: Exception) {
+        ex.message?.let { Log.d("date exception", it) }
+    }
+    return ""
 }

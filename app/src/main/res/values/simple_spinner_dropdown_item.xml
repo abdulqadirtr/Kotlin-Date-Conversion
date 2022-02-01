@@ -6,5 +6,6 @@
         <item>YYYY-MM-DD Format</item>
         <item>AM / PM Format</item>
         <item>Separate with Comma</item>
+        <item>yesterday / today</item>
     </string-array>
 </resources>
