@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="format_date">
+        <item>Default format</item>
+        <item>Date time  YYYY MM DD Format</item>
+        <item>Date time  YYYY MM DD HH:mm Format</item>
+        <item>Date time  YYYY MM DD HH:mm:ss Format</item>
+        <item>MONTH AND YEAR MM DD YYYY Format</item>
+
+        <item>Date time  DD MM YYYY HH:mm:ss Format</item>
+        <item>Date YYYY MM DD Format</item>
+        <item>Date / Name of Week/ year Format</item>
+        <item>Week name / Date Month Format</item>
+        <item>Date / Name of Month</item>
+        <item>Date time  DD MM YYYY - HH:mm:ss Format</item>
+        <item>AM / PM Format</item>
+    </string-array>
+</resources> 
+
+ 
